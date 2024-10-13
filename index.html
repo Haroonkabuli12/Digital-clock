@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Digital Clock</title>
+    <style>
+</head>
+ {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #1a1a1a;
+    font-family: 'Arial', sans-serif;
+}
+
+.clock-container {
+    text-align: center;
+    padding: 30px;
+    border: 10px solid #61dafb;
+    border-radius: 15px;
+    background-color: #282c34;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+.clock {
+    font-size: 60px;
+    color: #61dafb;
+    animation: fadeIn 1s ease;
+}
+
+.date {
+    font-size: 24px;
+    color: #ffffff;
+    margin-top: 10px;
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+</style>
+<body>
+    <div class="clock-container">
+        <div class="clock" id="clock"></div>
+        <div class="date" id="date"></div>
+    </div>
+    <script>
+        function updateClock() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+    const timeString = `${hours}:${minutes}:${seconds}`;
+    document.getElementById('clock').textContent = timeString;
+
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const dateString = now.toLocaleDateString(undefined, options);
+    document.getElementById('date').textContent = dateString;
+}
+
+setInterval(updateClock, 1000);
+updateClock(); // Initial call to display the time immediately
+
+    </script>
+
+</body>
+</html>
